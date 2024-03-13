@@ -17,6 +17,6 @@ ambil_dat = function(file){
 temp  = mclapply(files,ambil_dat,mc.cores = n_core)
 final = do.call(rbind,temp)
 
-write.csv(final,"agregat 21 Feb - 12 Mar 24.csv")
+write.csv(final,"agregat 12 Mar - 13 Mar 24.csv")
 
 unlink(files)
