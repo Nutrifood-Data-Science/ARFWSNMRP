@@ -1,0 +1,4 @@
+- source: report.qmd
+  quarto-pub:
+    - id: cc12c967-ac5f-4f2a-a1b7-77757358a072
+      url: 'https://ikanx101.quarto.pub/data-cuaca'

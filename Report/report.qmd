@@ -1,0 +1,155 @@
+---
+title: "Data Cuaca yang Dikumpulkan oleh Tim Market Riset"
+subtitle: "Penjelasan Singkat"
+author: Dept. Market Riset
+institute: Nutrifood Indonesia
+format: 
+  html:
+    code-block-bg: true
+    code-block-border-left: true
+    code-fold: true
+    code-summary: "Show me the code!"
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    theme: cyborg
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    toc-title: Daftar Isi
+    highlight-style: breeze
+editor: visual
+execute: 
+  echo: true
+  warning: false
+  error: false
+---
+
+```{r}
+#| include: false
+
+rm(list=ls())
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(epoxy)
+
+load("~/ARFWSNMRP/Clean Data/data all.rda")
+
+kota = df_final %>% pull(kota) %>% unique() %>% sort()
+```
+
+# PENDAHULUAN
+
+## Latar Belakang
+
+- Tim market riset melakukan _pilot project_ untuk mengambil data cuaca di beberapa kota di Indonesia sebagai __tabungan data__ yang mungkin akan berguna suatu saat nanti.
+
+- Temuan kualitatif saat survey terhadap __operator makanan dan minuman__:
+
+> Cuaca panas membuat konsumen membeli minuman seperti NutriSari. Kebalikannya, cuaca dingin membuat jualan minuman seperti NutriSari sepi.
+
+## Tujuan
+
+Mengambil data cuaca di beberapa kota di Indonesia.
+
+## Metode
+
+Data cuaca diambil dari situs [Open Weather Map](openweathermap.org) mengandalkan __API__ yang disediakan. Data cuaca yang diambil adalah:
+
+```{r}
+colnames(df_final)[-1]
+```
+
+Kenapa mengambil data cuaca dari situs [Open Weather Map](openweathermap.org)? Alasannya:
+
+1. __BMKG__:
+    - __API__ dari situs __BMKG__ tidak _reliable_ dan sulit digunakan.
+    - Tidak ada data _real feel_ di situs __BMKG__.
+1. [Open Weather Map](openweathermap.org):
+    - API dari [Open Weather Map](openweathermap.org) cukup _reliable_ untuk diambil datanya __per tiga jam__.
+    - Ada data _real feel_.
+    - Cakupan kota lumayan.
+    - Proses _scrape_ bisa dilakukan otomatis tanpa supervisi sama sekali.
+
+# DATA YANG DIAMBIL
+
+## Kota
+
+Berikut adalah kota yang diambil data cuacanya:
+
+```{epoxy}
+- {kota}
+```
+
+## Sampel Data
+
+```{r}
+#| include: false
+kota_sel = "Jakarta"
+
+bikin_grafik = function(kota_sel){
+  df_final %>% 
+  filter(kota == kota_sel) %>% 
+  ggplot(aes(x = waktu,
+             y = feel_like)) +
+  geom_line(color = "gray") +
+  geom_point(aes(color = kondisi)) +
+  ylim(20,45) +
+  theme_minimal() +
+  labs(x = "Waktu (per tiga jam)",
+       y = "Feel Like (dalam Celcius)",
+       color = "Kondisi Cuaca",
+       title = paste0("Feel Like di ",kota_sel),
+       subtitle = "Sumber: openweather.org") +
+  theme(legend.position = "bottom")
+}
+
+bikin_sebaran = function(kota_sel){
+  df_temp = 
+  df_final %>% 
+  filter(kota == kota_sel) 
+
+  mean_sel   = df_temp$feel_like %>% mean() %>% round(2)
+  median_sel = df_temp$feel_like %>% median() %>% round(2)
+  pesan      = paste0("Mean: ",mean_sel,"C\nMedian: ",median_sel,"C")
+
+  df_temp %>% 
+    ggplot(aes(y = feel_like)) +
+    geom_boxplot(color = "black",
+                 fill  = "red",
+                 alpha = .3) +
+    theme_minimal() +
+    labs(x = kota_sel,
+         y = "Feel Like (dalam Celcius)",
+         title = paste0("Boxplot Feel Like di ",kota_sel),
+         subtitle = "Sumber: openweather.org") +
+    theme(axis.text.x = element_blank()) +
+    annotate("label",x = 0,y = median_sel,label = pesan)
+}
+
+```
+
+Pada bagian ini, kita akan melihat data cuaca di __`r kota_sel`__.
+
+### Sebaran Data
+
+```{r}
+#| fig-align: center
+
+bikin_sebaran(kota_sel)
+```
+
+### _Trend Feel Like_
+
+```{r}
+#| fig-align: center
+
+bikin_grafik(kota_sel)
+```
+
+
+
+
