@@ -45,9 +45,9 @@ kota = df_final %>% pull(kota) %>% unique() %>% sort()
 
 ## Latar Belakang
 
-- Tim market riset melakukan _pilot project_ untuk mengambil data cuaca di beberapa kota di Indonesia sebagai __tabungan data__ yang mungkin akan berguna suatu saat nanti.
+-   Tim market riset melakukan *pilot project* untuk mengambil data cuaca di beberapa kota di Indonesia sebagai **tabungan data** yang mungkin akan berguna suatu saat nanti.
 
-- Temuan kualitatif saat survey terhadap __operator makanan dan minuman__:
+-   Temuan kualitatif saat survey terhadap **operator makanan dan minuman**:
 
 > Cuaca panas membuat konsumen membeli minuman seperti NutriSari. Kebalikannya, cuaca dingin membuat jualan minuman seperti NutriSari sepi.
 
@@ -57,7 +57,7 @@ Mengambil data cuaca di beberapa kota di Indonesia.
 
 ## Metode
 
-Data cuaca diambil dari situs [Open Weather Map](openweathermap.org) mengandalkan __API__ yang disediakan. Data cuaca yang diambil adalah:
+Data cuaca diambil dari situs [Open Weather Map](openweathermap.org) mengandalkan **API** yang disediakan. Data cuaca yang diambil adalah:
 
 ```{r}
 colnames(df_final)[-1]
@@ -65,14 +65,14 @@ colnames(df_final)[-1]
 
 Kenapa mengambil data cuaca dari situs [Open Weather Map](openweathermap.org)? Alasannya:
 
-1. __BMKG__:
-    - __API__ dari situs __BMKG__ tidak _reliable_ dan sulit digunakan.
-    - Tidak ada data _real feel_ di situs __BMKG__.
-1. [Open Weather Map](openweathermap.org):
-    - API dari [Open Weather Map](openweathermap.org) cukup _reliable_ untuk diambil datanya __per tiga jam__.
-    - Ada data _real feel_.
-    - Cakupan kota lumayan.
-    - Proses _scrape_ bisa dilakukan otomatis tanpa supervisi sama sekali.
+1.  **BMKG**:
+    -   **API** dari situs **BMKG** tidak *reliable* dan sulit digunakan.
+    -   Tidak ada data *real feel* di situs **BMKG**.
+2.  [Open Weather Map](openweathermap.org):
+    -   API dari [Open Weather Map](openweathermap.org) cukup *reliable* untuk diambil datanya **per tiga jam**.
+    -   Ada data *real feel*.
+    -   Cakupan kota lumayan.
+    -   Proses *scrape* bisa dilakukan otomatis tanpa supervisi sama sekali.
 
 # DATA YANG DIAMBIL
 
@@ -132,7 +132,7 @@ bikin_sebaran = function(kota_sel){
 
 ```
 
-Pada bagian ini, kita akan melihat data cuaca di __`r kota_sel`__.
+Pada bagian ini, kita akan melihat data cuaca di **`r kota_sel`**.
 
 ### Sebaran Data
 
@@ -142,14 +142,10 @@ Pada bagian ini, kita akan melihat data cuaca di __`r kota_sel`__.
 bikin_sebaran(kota_sel)
 ```
 
-### _Trend Feel Like_
+### *Trend Feel Like*
 
 ```{r}
 #| fig-align: center
 
 bikin_grafik(kota_sel)
 ```
-
-
-
-
