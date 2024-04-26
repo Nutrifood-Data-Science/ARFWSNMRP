@@ -21,3 +21,9 @@ Tangerang+Selatan
 Bogor
 Depok
 Bekasi
+Manado
+Jayapura
+Bandung
+Pontianak
+Ambon
+Bima

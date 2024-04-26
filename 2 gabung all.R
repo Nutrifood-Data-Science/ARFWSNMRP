@@ -22,4 +22,5 @@ ambil_data = function(input){
 df_temp  = mclapply(files,ambil_data,mc.cores = n_core)
 df_final = do.call(rbind,df_temp) %>% distinct() %>% arrange(kota,waktu) %>% select(-time)
 
+setwd("~/ARFWSNMRP/Clean Data")
 save(df_final,file = "data all.rda")

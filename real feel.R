@@ -8,6 +8,7 @@ library(jsonlite)
 
 # set kotanya
 city = readLines("kota.txt")
+# city = c("ambon","bima")
 
 # api key
 API_key = "15bf60709629b9e58a377841ff80480b"
