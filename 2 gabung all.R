@@ -25,4 +25,4 @@ df_final = do.call(rbind,df_temp) %>% distinct() %>% arrange(kota,waktu) %>% sel
 setwd("~/ARFWSNMRP/Clean Data")
 save(df_final,file = "data all.rda")
 
-df_final %>% openxlsx::write.xlsx("Data All per 2 May 2024 0830.xlsx")
+df_final %>% openxlsx::write.xlsx("Data All per 2 May 2024 1322.xlsx")
