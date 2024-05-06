@@ -21,8 +21,9 @@ ambil_data = function(input){
 # kita ambil semaunya
 df_temp  = mclapply(files,ambil_data,mc.cores = n_core)
 df_final = do.call(rbind,df_temp) %>% distinct() %>% arrange(kota,waktu) %>% select(-time)
+df_final = df_final |> mutate(waktu = waktu + lubridate::hours(7))
 
 setwd("~/ARFWSNMRP/Clean Data")
 save(df_final,file = "data all.rda")
 
-df_final %>% openxlsx::write.xlsx("Data All per 3 May 2024 1438.xlsx")
+df_final %>% openxlsx::write.xlsx("Data All per 6 May 2024.xlsx")
