@@ -107,6 +107,24 @@ bikin_grafik = function(kota_sel){
   theme(legend.position = "bottom")
 }
 
+bikin_grafik_2 = function(kota_sel){
+  df_final %>% 
+  filter(kota == kota_sel) %>% 
+  ggplot(aes(x = waktu,
+             y = humidity)) +
+  geom_line(color = "gray") +
+  geom_point(aes(color = kondisi)) +
+  #ylim(20,45) +
+  theme_minimal() +
+  labs(x = "Waktu (per tiga jam)",
+       y = "Humidity",
+       color = "Kondisi Cuaca",
+       title = paste0("Humidity di ",kota_sel),
+       subtitle = "Sumber: openweather.org") +
+  theme(legend.position = "bottom")
+}
+
+
 bikin_sebaran = function(kota_sel){
   df_temp = 
   df_final %>% 
@@ -148,4 +166,5 @@ bikin_sebaran(kota_sel)
 #| fig-align: center
 
 bikin_grafik(kota_sel)
+bikin_grafik_2(kota_sel)
 ```
