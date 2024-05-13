@@ -1,0 +1,4 @@
+- source: report.qmd
+  quarto-pub:
+    - id: e6e80b0c-3d2f-464b-877f-77a717c76ef5
+      url: 'https://ikanx101.quarto.pub/data-cuaca-yang-dikumpulkan-oleh-tim-market-riset'

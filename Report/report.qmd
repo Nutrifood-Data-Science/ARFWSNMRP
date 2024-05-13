@@ -88,7 +88,6 @@ Berikut adalah kota yang diambil data cuacanya:
 
 ```{r}
 #| include: false
-kota_sel = "Jakarta"
 
 bikin_grafik = function(kota_sel){
   df_final %>% 
@@ -150,14 +149,15 @@ bikin_sebaran = function(kota_sel){
 
 ```
 
-Pada bagian ini, kita akan melihat data cuaca di **`r kota_sel`**.
+Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut.
 
 ### Sebaran Data
 
 ```{r}
 #| fig-align: center
 
-bikin_sebaran(kota_sel)
+bikin_sebaran("Semarang")
+bikin_sebaran("Jakarta")
 ```
 
 ### *Trend Feel Like*
@@ -165,6 +165,28 @@ bikin_sebaran(kota_sel)
 ```{r}
 #| fig-align: center
 
-bikin_grafik(kota_sel)
-bikin_grafik_2(kota_sel)
+bikin_grafik("Semarang")
+bikin_grafik("Jakarta")
+
+bikin_grafik_2("Semarang")
+bikin_grafik_2("Jakarta")
+```
+
+# Data rata-rata
+
+```{r}
+list_bulan = 
+  df_final %>% 
+  mutate(bulan = lubridate::month(waktu)) %>% 
+  group_by(bulan,kota) %>% 
+  summarise(suhu_mean   = mean(feel_like),
+            suhu_median = median(feel_like)) %>% 
+  ungroup() %>% 
+  group_split(bulan)
+
+list_bulan[[1]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
+list_bulan[[2]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
+list_bulan[[3]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
+list_bulan[[4]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
+list_bulan[[5]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
 ```
