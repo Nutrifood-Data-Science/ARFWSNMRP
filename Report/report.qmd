@@ -89,33 +89,49 @@ Berikut adalah kota yang diambil data cuacanya:
 ```{r}
 #| include: false
 
+kota_sel = "Semarang"
+
 bikin_grafik = function(kota_sel){
   df_final %>% 
   filter(kota == kota_sel) %>% 
-  ggplot(aes(x = waktu,
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18) |>
+  mutate(tanggal = lubridate::date(waktu)) |>
+  group_by(tanggal) |>
+  summarise(feel_like = mean(feel_like)) |>
+  ungroup() |>
+  ggplot(aes(x = tanggal,
              y = feel_like)) +
+  geom_smooth(method = "loess",alpha = .3) +
   geom_line(color = "gray") +
-  geom_point(aes(color = kondisi)) +
+  geom_point() +
   ylim(20,45) +
   theme_minimal() +
-  labs(x = "Waktu (per tiga jam)",
+  labs(x = "Tanggal",
        y = "Feel Like (dalam Celcius)",
        color = "Kondisi Cuaca",
        title = paste0("Feel Like di ",kota_sel),
        subtitle = "Sumber: openweather.org") +
   theme(legend.position = "bottom")
-}
+  }
 
 bikin_grafik_2 = function(kota_sel){
   df_final %>% 
   filter(kota == kota_sel) %>% 
-  ggplot(aes(x = waktu,
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18) |>
+  mutate(tanggal = lubridate::date(waktu)) |>
+  group_by(tanggal) |>
+  summarise(humidity = mean(humidity)) |>
+  ungroup() |> 
+  ggplot(aes(x = tanggal,
              y = humidity)) +
+  geom_smooth(method = "loess",alpha = .3) +
   geom_line(color = "gray") +
-  geom_point(aes(color = kondisi)) +
+  geom_point() +
   #ylim(20,45) +
   theme_minimal() +
-  labs(x = "Waktu (per tiga jam)",
+  labs(x = "Tanggal",
        y = "Humidity",
        color = "Kondisi Cuaca",
        title = paste0("Humidity di ",kota_sel),
@@ -127,11 +143,14 @@ bikin_grafik_2 = function(kota_sel){
 bikin_sebaran = function(kota_sel){
   df_temp = 
   df_final %>% 
-  filter(kota == kota_sel) 
+  filter(kota == kota_sel) |>
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18)
 
-  mean_sel   = df_temp$feel_like %>% mean() %>% round(2)
-  median_sel = df_temp$feel_like %>% median() %>% round(2)
-  pesan      = paste0("Mean: ",mean_sel,"C\nMedian: ",median_sel,"C")
+  mean_sel   = df_temp$feel_like %>% mean() %>% round(1)
+  median_sel = df_temp$feel_like %>% median() %>% round(1)
+  pesan      = paste0("Mean: ",mean_sel,"C\nMedian: ",
+                      median_sel,"C")
 
   df_temp %>% 
     ggplot(aes(y = feel_like)) +
@@ -149,34 +168,57 @@ bikin_sebaran = function(kota_sel){
 
 ```
 
-Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut.
+Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni pukul 08.00 - 18.00.
 
 ### Sebaran Data
+
+Berikut adalah sebaran data di beberapa kota di Indonesia:
 
 ```{r}
 #| fig-align: center
 
 bikin_sebaran("Semarang")
 bikin_sebaran("Jakarta")
+bikin_sebaran("Surabaya")
 ```
 
 ### *Trend Feel Like*
 
+Berikut adalah _trend feel like_ dari beberapa kota di Indonesia berikut:
+
 ```{r}
 #| fig-align: center
+#| warning: false
+#| message: false
 
 bikin_grafik("Semarang")
 bikin_grafik("Jakarta")
+bikin_grafik("Surabaya")
+```
+
+### _Trend Humidity_
+
+Berikut adalah _trend humidity_ dari beberapa kota di Indonesia berikut:
+
+```{r}
+#| fig-align: center
+#| warning: false
+#| message: false
 
 bikin_grafik_2("Semarang")
 bikin_grafik_2("Jakarta")
+bikin_grafik_2("Surabaya")
 ```
 
-# Data rata-rata
+## Data Rata-Rata
+
+Berikut adalah 10 kota dengan rata-rata _feel like_ tertinggi di setiap bulannya.
 
 ```{r}
 list_bulan = 
-  df_final %>% 
+  df_final %>%
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18) |>
   mutate(bulan = lubridate::month(waktu)) %>% 
   group_by(bulan,kota) %>% 
   summarise(suhu_mean   = mean(feel_like),
@@ -184,9 +226,9 @@ list_bulan =
   ungroup() %>% 
   group_split(bulan)
 
-list_bulan[[1]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[2]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[3]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[4]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[5]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
+list_bulan[[1]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Januari 2024")
+list_bulan[[2]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Februari 2024")
+list_bulan[[3]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Maret 2024")
+list_bulan[[4]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "April 2024")
+list_bulan[[5]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Mei 2024")
 ```
