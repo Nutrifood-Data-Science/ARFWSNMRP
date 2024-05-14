@@ -232,3 +232,17 @@ list_bulan[[3]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(captio
 list_bulan[[4]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "April 2024")
 list_bulan[[5]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Mei 2024")
 ```
+
+
+# Perbandingan Suhu Harian Per Area
+
+Pada bagian ini, kita akan kelompokkan semua kota yang ada ke dalam kelompok area _sales_ Nutrifood. Kita akan lihat apakah ada area yang memiliki suhu lebih panas (dan signifikan) dibandingkan dengan area yang lain.
+
+```{r}
+df_final %>%
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18)
+  
+```
+
+
