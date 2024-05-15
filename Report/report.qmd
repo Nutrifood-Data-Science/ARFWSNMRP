@@ -84,6 +84,8 @@ Berikut adalah kota yang diambil data cuacanya:
 - {kota}
 ```
 
+Kota-kota yang diambil merupakan representasi dari area-area _sales_ di Nutrifood. Beberapa kota baru ditambahkan setelah lebaran 2024 lalu.
+
 ## Sampel Data
 
 ```{r}
@@ -168,7 +170,7 @@ bikin_sebaran = function(kota_sel){
 
 ```
 
-Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni pukul 08.00 - 18.00.
+Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni __pukul 08.00 - 18.00__ di kota masing-masing.
 
 ### Sebaran Data
 
@@ -234,7 +236,9 @@ list_bulan[[4]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(captio
 list_bulan[[5]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Mei 2024")
 ```
 
-# Perbandingan Suhu Harian Per Area
+# _FEEL LIKE_ DI AREA _SALES_
+
+## Perbandingan Suhu Harian Per Area
 
 Pada bagian ini, kita akan kelompokkan semua kota yang ada ke dalam kelompok area *sales* Nutrifood. Kita akan lihat apakah ada area yang memiliki suhu lebih panas (dan signifikan) dibandingkan dengan area yang lain.
 
@@ -307,3 +311,94 @@ bikin_grafik("JATENG")
 bikin_grafik("JATIM")
 bikin_grafik("KALIMANTAN")
 ```
+
+Jika terlihat, ada beberapa area _sales_ yang memiliki tren mendatar dan tren yang berubah-ubah. 
+
+Pertanyaannya adalah:
+
+> __Apakah ada perbedaan signifikan suhu feel like antar area tersebut?__
+
+## Uji Hipotesis
+
+Pada pengujian hipotesis kali ini, kita akan gunakan metode statistika non parametrik sehingga tidak perlu pengujian normalitas, cukup menggunakan _data as it is_.
+
+### Kruskal Wallis
+
+Tahapan uji hipotesis:
+
+1. $H_0$, yakni __tidak ada perbedaan rata-rata__ _feel like_ di semua area.
+1. $H_1$, yakni __ada perbedaan rata-rata__ _feel like_ di semua area.
+1. Hitung statistika uji, dalam hal ini adalah _p value_.
+1. Ambil kesimpulan dari nilai _p value_ tersebut.
+
+```{r}
+#| message: false
+#| warning: false
+
+uji = kruskal.test(feel_like~area_sales,df_area_all)
+uji  
+
+p_val_1 = uji[[3]] * 100
+p_val_2 = round(p_val_1,0)
+```
+
+Kita dapatkan bahwa _p value_ sebesar `r p_val_1` alias __`r p_val_2`__ yang berarti __tolak__ $H_0$.
+
+> Ada perbedaan rata-rata _feel like_ di semua area.
+
+Berarti setidaknya ada satu area yang memiliki rata-rata _feel like_ yang berbeda dengan area yang lain.
+
+### Area yang Mana?
+
+Untuk menjawabnya, kita akan gunakan __Wilcox Text__ untu menguji rata-rata _feel like_ dari semua pasangan area yang ada.
+
+Berikut adalah hasilnya:
+
+```{r}
+input_func = c("JABAR","JATENG")
+
+hitung_pasang = function(input_func){
+  df_new = df_area_all |> filter(area_sales %in% input_func)
+  hasil  = wilcox.test(feel_like~area_sales,df_new)
+  p_val  = hasil$p.value
+  # tulis kesimpulan
+  kesimpulan = ifelse(p_val < 0.05,"Beda","Sama")
+  return(kesimpulan)
+}
+
+# kita buat summary dulu ya
+df_area_all |>
+  group_by(area_sales) |>
+  summarise(rata = mean(feel_like)) |>
+  ungroup() |>
+  mutate(rata = round(rata,2)) |>
+  knitr::kable()
+
+data_area_pair = 
+  expand.grid(area_sales_new,area_sales_new) |>
+  as.data.frame() |>
+  rename(area_1 = Var1,
+         area_2 = Var2) |>
+  filter(area_1 != area_2) |>
+  mutate(area_1 = as.character(area_1),
+         area_2 = as.character(area_2))
+
+input_list = vector("list",nrow(data_area_pair))
+
+for(i in 1:nrow(data_area_pair)){
+  input_list[[i]] = c(data_area_pair$area_1[i],
+                      data_area_pair$area_2[i])
+}
+
+library(parallel)
+n_core = detectCores()
+output = mclapply(input_list,hitung_pasang,mc.cores = n_core) |> unlist()
+data_area_pair$kesimpulan = output
+
+data_area_pair |>
+  reshape2::dcast(area_1 ~ area_2, value.var = "kesimpulan") |>
+  knitr::kable()
+```
+
+
+
