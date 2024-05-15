@@ -97,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#data-rata-rata" id="toc-data-rata-rata" class="nav-link" data-scroll-target="#data-rata-rata">Data Rata-Rata</a></li>
   </ul></li>
+  <li><a href="#perbandingan-suhu-harian-per-area" id="toc-perbandingan-suhu-harian-per-area" class="nav-link" data-scroll-target="#perbandingan-suhu-harian-per-area">Perbandingan Suhu Harian Per Area</a></li>
   </ul>
 </nav>
 </div>
@@ -311,6 +312,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Solo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="trend-humidity" class="level3">
@@ -319,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Semarang"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Semarang"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -330,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Jakarta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Jakarta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -341,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Surabaya"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Surabaya"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -359,18 +371,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>list_bulan <span class="ot">=</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bulan =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(waktu)) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bulan,kota) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">suhu_mean   =</span> <span class="fu">mean</span>(feel_like),</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">suhu_median =</span> <span class="fu">median</span>(feel_like)) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>(bulan)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Januari 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>list_bulan <span class="ot">=</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bulan =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(waktu)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bulan,kota) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">suhu_mean   =</span> <span class="fu">mean</span>(feel_like),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">suhu_median =</span> <span class="fu">median</span>(feel_like)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>(bulan)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Januari 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -449,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">2</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Februari 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">2</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Februari 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -528,7 +540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">3</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Maret 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">3</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Maret 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -607,7 +619,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">4</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"April 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">4</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"April 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -686,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Show me the code!</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">5</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Mei 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">5</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Mei 2024"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -703,70 +715,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Kupang</td>
-<td style="text-align: right;">35.26458</td>
-<td style="text-align: right;">35.320</td>
+<td style="text-align: right;">35.45865</td>
+<td style="text-align: right;">35.820</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Tangerang Selatan</td>
-<td style="text-align: right;">33.63018</td>
+<td style="text-align: right;">33.58508</td>
 <td style="text-align: right;">33.280</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Semarang</td>
-<td style="text-align: right;">33.34357</td>
+<td style="text-align: right;">33.45933</td>
 <td style="text-align: right;">33.450</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Bekasi</td>
-<td style="text-align: right;">33.25544</td>
+<td style="text-align: right;">33.21984</td>
 <td style="text-align: right;">32.640</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Jakarta</td>
-<td style="text-align: right;">33.24086</td>
+<td style="text-align: right;">33.21677</td>
 <td style="text-align: right;">32.350</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Tangerang</td>
-<td style="text-align: right;">33.06172</td>
-<td style="text-align: right;">33.060</td>
+<td style="text-align: right;">32.93889</td>
+<td style="text-align: right;">32.910</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Depok</td>
-<td style="text-align: right;">32.66814</td>
+<td style="text-align: right;">32.65730</td>
 <td style="text-align: right;">32.180</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Solo</td>
-<td style="text-align: right;">32.50429</td>
+<td style="text-align: right;">32.63700</td>
 <td style="text-align: right;">33.425</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Bogor</td>
-<td style="text-align: right;">31.74286</td>
+<td style="text-align: right;">31.74817</td>
 <td style="text-align: right;">32.045</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">5</td>
-<td style="text-align: left;">Sidoarjo</td>
-<td style="text-align: right;">31.71607</td>
-<td style="text-align: right;">31.750</td>
+<td style="text-align: left;">Banda Aceh</td>
+<td style="text-align: right;">31.71058</td>
+<td style="text-align: right;">31.660</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+</section>
+</section>
+<section id="perbandingan-suhu-harian-per-area" class="level1">
+<h1>Perbandingan Suhu Harian Per Area</h1>
+<p>Pada bagian ini, kita akan kelompokkan semua kota yang ada ke dalam kelompok area <em>sales</em> Nutrifood. Kita akan lihat apakah ada area yang memiliki suhu lebih panas (dan signifikan) dibandingkan dengan area yang lain.</p>
+<p>Berikut adalah <em>area sales</em> yang dimiliki Nutrifood:</p>
+<div class="cell">
+<ul>
+<li>BARA</li>
+<li>IBT</li>
+<li>JABAR</li>
+<li>Jabodetabek</li>
+<li>JATENG</li>
+<li>JATIM</li>
+<li>KALIMANTAN</li>
+<li>PUMA</li>
+<li>SUM1</li>
+<li>SUM2</li>
+</ul>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"SUM1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"SUM2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"PUMA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"BARA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"IBT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Jabodetabek"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"JABAR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"JATENG"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"JATIM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show me the code!</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"KALIMANTAN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <!-- -->
 
-</section>
 </section>
 
 </main>
@@ -1242,240 +1385,315 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data Cuaca yang Dikumpulkan oleh Tim Market Riset"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Penjelasan Singkat"</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Dept. Market Riset</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="an">institute:</span><span class="co"> Nutrifood Indonesia</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: true</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show me the code!"</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools:</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">      source: true</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">      toggle: false</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">      caption: none</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cyborg</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Daftar Isi</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: breeze</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">  error: false</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epoxy)</span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"~/ARFWSNMRP/Clean Data/data all.rda"</span>)</span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>kota <span class="ot">=</span> df_final <span class="sc">%&gt;%</span> <span class="fu">pull</span>(kota) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="fu"># PENDAHULUAN</span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Latar Belakang</span></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Tim market riset melakukan *pilot project* untuk mengambil data cuaca di beberapa kota di Indonesia sebagai **tabungan data** yang mungkin akan berguna suatu saat nanti.</span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Temuan kualitatif saat survey terhadap **operator makanan dan minuman**:</span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Cuaca panas membuat konsumen membeli minuman seperti NutriSari. Kebalikannya, cuaca dingin membuat jualan minuman seperti NutriSari sepi.</span></span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tujuan</span></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>Mengambil data cuaca di beberapa kota di Indonesia.</span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metode</span></span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>Data cuaca diambil dari situs <span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span> mengandalkan **API** yang disediakan. Data cuaca yang diambil adalah:</span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_final)[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>Kenapa mengambil data cuaca dari situs <span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span>? Alasannya:</span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**BMKG**:</span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**API** dari situs **BMKG** tidak *reliable* dan sulit digunakan.</span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Tidak ada data *real feel* di situs **BMKG**.</span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span>:</span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>API dari <span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span> cukup *reliable* untuk diambil datanya **per tiga jam**.</span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Ada data *real feel*.</span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cakupan kota lumayan.</span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Proses *scrape* bisa dilakukan otomatis tanpa supervisi sama sekali.</span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a><span class="fu"># DATA YANG DIAMBIL</span></span>
-<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kota</span></span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a>Berikut adalah kota yang diambil data cuacanya:</span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{epoxy}</span></span>
-<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a><span class="in">- {kota}</span></span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sampel Data</span></span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a>kota_sel <span class="ot">=</span> <span class="st">"Semarang"</span></span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>bikin_grafik <span class="ot">=</span> <span class="cf">function</span>(kota_sel){</span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span> </span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(kota <span class="sc">==</span> kota_sel) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
-<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tanggal =</span> lubridate<span class="sc">::</span><span class="fu">date</span>(waktu)) <span class="sc">|&gt;</span></span>
-<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tanggal) <span class="sc">|&gt;</span></span>
-<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">feel_like =</span> <span class="fu">mean</span>(feel_like)) <span class="sc">|&gt;</span></span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tanggal,</span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> feel_like)) <span class="sc">+</span></span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>,<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
-<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">20</span>,<span class="dv">45</span>) <span class="sc">+</span></span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tanggal"</span>,</span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Feel Like (dalam Celcius)"</span>,</span>
-<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Kondisi Cuaca"</span>,</span>
-<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Feel Like di "</span>,kota_sel),</span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Sumber: openweather.org"</span>) <span class="sc">+</span></span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>bikin_grafik_2 <span class="ot">=</span> <span class="cf">function</span>(kota_sel){</span>
-<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span> </span>
-<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(kota <span class="sc">==</span> kota_sel) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tanggal =</span> lubridate<span class="sc">::</span><span class="fu">date</span>(waktu)) <span class="sc">|&gt;</span></span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tanggal) <span class="sc">|&gt;</span></span>
-<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">humidity =</span> <span class="fu">mean</span>(humidity)) <span class="sc">|&gt;</span></span>
-<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tanggal,</span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> humidity)) <span class="sc">+</span></span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>,<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>  <span class="co">#ylim(20,45) +</span></span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tanggal"</span>,</span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Humidity"</span>,</span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Kondisi Cuaca"</span>,</span>
-<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Humidity di "</span>,kota_sel),</span>
-<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Sumber: openweather.org"</span>) <span class="sc">+</span></span>
-<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>bikin_sebaran <span class="ot">=</span> <span class="cf">function</span>(kota_sel){</span>
-<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a>  df_temp <span class="ot">=</span> </span>
-<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span> </span>
-<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(kota <span class="sc">==</span> kota_sel) <span class="sc">|&gt;</span></span>
-<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
-<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>)</span>
-<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a>  mean_sel   <span class="ot">=</span> df_temp<span class="sc">$</span>feel_like <span class="sc">%&gt;%</span> <span class="fu">mean</span>() <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a>  median_sel <span class="ot">=</span> df_temp<span class="sc">$</span>feel_like <span class="sc">%&gt;%</span> <span class="fu">median</span>() <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a>  pesan      <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"Mean: "</span>,mean_sel,<span class="st">"C</span><span class="sc">\n</span><span class="st">Median: "</span>,</span>
-<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a>                      median_sel,<span class="st">"C"</span>)</span>
-<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a>  df_temp <span class="sc">%&gt;%</span> </span>
-<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> feel_like)) <span class="sc">+</span></span>
-<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill  =</span> <span class="st">"red"</span>,</span>
-<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> kota_sel,</span>
-<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Feel Like (dalam Celcius)"</span>,</span>
-<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Boxplot Feel Like di "</span>,kota_sel),</span>
-<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Sumber: openweather.org"</span>) <span class="sc">+</span></span>
-<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"label"</span>,<span class="at">x =</span> <span class="dv">0</span>,<span class="at">y =</span> median_sel,<span class="at">label =</span> pesan)</span>
-<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a>Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni pukul 08.00 - 18.00.</span>
-<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sebaran Data</span></span>
-<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a>Berikut adalah sebaran data di beberapa kota di Indonesia:</span>
-<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
-<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_sebaran</span>(<span class="st">"Semarang"</span>)</span>
-<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_sebaran</span>(<span class="st">"Jakarta"</span>)</span>
-<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_sebaran</span>(<span class="st">"Surabaya"</span>)</span>
-<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### *Trend Feel Like*</span></span>
-<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>Berikut adalah _trend feel like_ dari beberapa kota di Indonesia berikut:</span>
-<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
-<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Semarang"</span>)</span>
-<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Jakarta"</span>)</span>
-<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Surabaya"</span>)</span>
-<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a><span class="fu">### _Trend Humidity_</span></span>
-<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a>Berikut adalah _trend humidity_ dari beberapa kota di Indonesia berikut:</span>
-<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
-<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Semarang"</span>)</span>
-<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Jakarta"</span>)</span>
-<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Surabaya"</span>)</span>
-<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Rata-Rata</span></span>
-<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>Berikut adalah 10 kota dengan rata-rata _feel like_ tertinggi di setiap bulannya.</span>
-<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>list_bulan <span class="ot">=</span> </span>
-<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span></span>
-<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
-<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bulan =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(waktu)) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bulan,kota) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">suhu_mean   =</span> <span class="fu">mean</span>(feel_like),</span>
-<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a>            <span class="at">suhu_median =</span> <span class="fu">median</span>(feel_like)) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>(bulan)</span>
-<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Januari 2024"</span>)</span>
-<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">2</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Februari 2024"</span>)</span>
-<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">3</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Maret 2024"</span>)</span>
-<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">4</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"April 2024"</span>)</span>
-<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">5</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Mei 2024"</span>)</span>
-<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb28" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data Cuaca yang Dikumpulkan oleh Tim Market Riset"</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Penjelasan Singkat"</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Dept. Market Riset</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="an">institute:</span><span class="co"> Nutrifood Indonesia</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: true</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show me the code!"</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools:</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">      source: true</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">      toggle: false</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">      caption: none</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cyborg</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Daftar Isi</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: breeze</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="co">  error: false</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epoxy)</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"~/ARFWSNMRP/Clean Data/data all.rda"</span>)</span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>kota <span class="ot">=</span> df_final <span class="sc">%&gt;%</span> <span class="fu">pull</span>(kota) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a><span class="fu"># PENDAHULUAN</span></span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Latar Belakang</span></span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Tim market riset melakukan *pilot project* untuk mengambil data cuaca di beberapa kota di Indonesia sebagai **tabungan data** yang mungkin akan berguna suatu saat nanti.</span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Temuan kualitatif saat survey terhadap **operator makanan dan minuman**:</span>
+<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Cuaca panas membuat konsumen membeli minuman seperti NutriSari. Kebalikannya, cuaca dingin membuat jualan minuman seperti NutriSari sepi.</span></span>
+<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tujuan</span></span>
+<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a>Mengambil data cuaca di beberapa kota di Indonesia.</span>
+<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metode</span></span>
+<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>Data cuaca diambil dari situs <span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span> mengandalkan **API** yang disediakan. Data cuaca yang diambil adalah:</span>
+<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_final)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a>Kenapa mengambil data cuaca dari situs <span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span>? Alasannya:</span>
+<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**BMKG**:</span>
+<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**API** dari situs **BMKG** tidak *reliable* dan sulit digunakan.</span>
+<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Tidak ada data *real feel* di situs **BMKG**.</span>
+<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span>:</span>
+<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>API dari <span class="co">[</span><span class="ot">Open Weather Map</span><span class="co">](openweathermap.org)</span> cukup *reliable* untuk diambil datanya **per tiga jam**.</span>
+<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Ada data *real feel*.</span>
+<span id="cb28-78"><a href="#cb28-78" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cakupan kota lumayan.</span>
+<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Proses *scrape* bisa dilakukan otomatis tanpa supervisi sama sekali.</span>
+<span id="cb28-80"><a href="#cb28-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-81"><a href="#cb28-81" aria-hidden="true" tabindex="-1"></a><span class="fu"># DATA YANG DIAMBIL</span></span>
+<span id="cb28-82"><a href="#cb28-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-83"><a href="#cb28-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kota</span></span>
+<span id="cb28-84"><a href="#cb28-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-85"><a href="#cb28-85" aria-hidden="true" tabindex="-1"></a>Berikut adalah kota yang diambil data cuacanya:</span>
+<span id="cb28-86"><a href="#cb28-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-89"><a href="#cb28-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{epoxy}</span></span>
+<span id="cb28-90"><a href="#cb28-90" aria-hidden="true" tabindex="-1"></a><span class="in">- {kota}</span></span>
+<span id="cb28-91"><a href="#cb28-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-92"><a href="#cb28-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-93"><a href="#cb28-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sampel Data</span></span>
+<span id="cb28-94"><a href="#cb28-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-97"><a href="#cb28-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-98"><a href="#cb28-98" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb28-99"><a href="#cb28-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-100"><a href="#cb28-100" aria-hidden="true" tabindex="-1"></a>kota_sel <span class="ot">=</span> <span class="st">"Semarang"</span></span>
+<span id="cb28-101"><a href="#cb28-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-102"><a href="#cb28-102" aria-hidden="true" tabindex="-1"></a>bikin_grafik <span class="ot">=</span> <span class="cf">function</span>(kota_sel){</span>
+<span id="cb28-103"><a href="#cb28-103" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span> </span>
+<span id="cb28-104"><a href="#cb28-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(kota <span class="sc">==</span> kota_sel) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-105"><a href="#cb28-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-106"><a href="#cb28-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-107"><a href="#cb28-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tanggal =</span> lubridate<span class="sc">::</span><span class="fu">date</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-108"><a href="#cb28-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tanggal) <span class="sc">|&gt;</span></span>
+<span id="cb28-109"><a href="#cb28-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">feel_like =</span> <span class="fu">mean</span>(feel_like)) <span class="sc">|&gt;</span></span>
+<span id="cb28-110"><a href="#cb28-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb28-111"><a href="#cb28-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tanggal,</span>
+<span id="cb28-112"><a href="#cb28-112" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> feel_like)) <span class="sc">+</span></span>
+<span id="cb28-113"><a href="#cb28-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>,<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb28-114"><a href="#cb28-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb28-115"><a href="#cb28-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-116"><a href="#cb28-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">20</span>,<span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb28-117"><a href="#cb28-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb28-118"><a href="#cb28-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tanggal"</span>,</span>
+<span id="cb28-119"><a href="#cb28-119" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Feel Like (dalam Celcius)"</span>,</span>
+<span id="cb28-120"><a href="#cb28-120" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Kondisi Cuaca"</span>,</span>
+<span id="cb28-121"><a href="#cb28-121" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Feel Like di "</span>,kota_sel),</span>
+<span id="cb28-122"><a href="#cb28-122" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Sumber: openweather.org"</span>) <span class="sc">+</span></span>
+<span id="cb28-123"><a href="#cb28-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb28-124"><a href="#cb28-124" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb28-125"><a href="#cb28-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-126"><a href="#cb28-126" aria-hidden="true" tabindex="-1"></a>bikin_grafik_2 <span class="ot">=</span> <span class="cf">function</span>(kota_sel){</span>
+<span id="cb28-127"><a href="#cb28-127" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span> </span>
+<span id="cb28-128"><a href="#cb28-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(kota <span class="sc">==</span> kota_sel) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-129"><a href="#cb28-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-130"><a href="#cb28-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-131"><a href="#cb28-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tanggal =</span> lubridate<span class="sc">::</span><span class="fu">date</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-132"><a href="#cb28-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tanggal) <span class="sc">|&gt;</span></span>
+<span id="cb28-133"><a href="#cb28-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">humidity =</span> <span class="fu">mean</span>(humidity)) <span class="sc">|&gt;</span></span>
+<span id="cb28-134"><a href="#cb28-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb28-135"><a href="#cb28-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tanggal,</span>
+<span id="cb28-136"><a href="#cb28-136" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> humidity)) <span class="sc">+</span></span>
+<span id="cb28-137"><a href="#cb28-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>,<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb28-138"><a href="#cb28-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb28-139"><a href="#cb28-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-140"><a href="#cb28-140" aria-hidden="true" tabindex="-1"></a>  <span class="co">#ylim(20,45) +</span></span>
+<span id="cb28-141"><a href="#cb28-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb28-142"><a href="#cb28-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tanggal"</span>,</span>
+<span id="cb28-143"><a href="#cb28-143" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Humidity"</span>,</span>
+<span id="cb28-144"><a href="#cb28-144" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Kondisi Cuaca"</span>,</span>
+<span id="cb28-145"><a href="#cb28-145" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Humidity di "</span>,kota_sel),</span>
+<span id="cb28-146"><a href="#cb28-146" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Sumber: openweather.org"</span>) <span class="sc">+</span></span>
+<span id="cb28-147"><a href="#cb28-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb28-148"><a href="#cb28-148" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-149"><a href="#cb28-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-150"><a href="#cb28-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-151"><a href="#cb28-151" aria-hidden="true" tabindex="-1"></a>bikin_sebaran <span class="ot">=</span> <span class="cf">function</span>(kota_sel){</span>
+<span id="cb28-152"><a href="#cb28-152" aria-hidden="true" tabindex="-1"></a>  df_temp <span class="ot">=</span> </span>
+<span id="cb28-153"><a href="#cb28-153" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span> </span>
+<span id="cb28-154"><a href="#cb28-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(kota <span class="sc">==</span> kota_sel) <span class="sc">|&gt;</span></span>
+<span id="cb28-155"><a href="#cb28-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-156"><a href="#cb28-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>)</span>
+<span id="cb28-157"><a href="#cb28-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-158"><a href="#cb28-158" aria-hidden="true" tabindex="-1"></a>  mean_sel   <span class="ot">=</span> df_temp<span class="sc">$</span>feel_like <span class="sc">%&gt;%</span> <span class="fu">mean</span>() <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb28-159"><a href="#cb28-159" aria-hidden="true" tabindex="-1"></a>  median_sel <span class="ot">=</span> df_temp<span class="sc">$</span>feel_like <span class="sc">%&gt;%</span> <span class="fu">median</span>() <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb28-160"><a href="#cb28-160" aria-hidden="true" tabindex="-1"></a>  pesan      <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"Mean: "</span>,mean_sel,<span class="st">"C</span><span class="sc">\n</span><span class="st">Median: "</span>,</span>
+<span id="cb28-161"><a href="#cb28-161" aria-hidden="true" tabindex="-1"></a>                      median_sel,<span class="st">"C"</span>)</span>
+<span id="cb28-162"><a href="#cb28-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-163"><a href="#cb28-163" aria-hidden="true" tabindex="-1"></a>  df_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb28-164"><a href="#cb28-164" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> feel_like)) <span class="sc">+</span></span>
+<span id="cb28-165"><a href="#cb28-165" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb28-166"><a href="#cb28-166" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill  =</span> <span class="st">"red"</span>,</span>
+<span id="cb28-167"><a href="#cb28-167" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb28-168"><a href="#cb28-168" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb28-169"><a href="#cb28-169" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> kota_sel,</span>
+<span id="cb28-170"><a href="#cb28-170" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Feel Like (dalam Celcius)"</span>,</span>
+<span id="cb28-171"><a href="#cb28-171" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Boxplot Feel Like di "</span>,kota_sel),</span>
+<span id="cb28-172"><a href="#cb28-172" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Sumber: openweather.org"</span>) <span class="sc">+</span></span>
+<span id="cb28-173"><a href="#cb28-173" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb28-174"><a href="#cb28-174" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"label"</span>,<span class="at">x =</span> <span class="dv">0</span>,<span class="at">y =</span> median_sel,<span class="at">label =</span> pesan)</span>
+<span id="cb28-175"><a href="#cb28-175" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-176"><a href="#cb28-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-177"><a href="#cb28-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-178"><a href="#cb28-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-179"><a href="#cb28-179" aria-hidden="true" tabindex="-1"></a>Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni pukul 08.00 - 18.00.</span>
+<span id="cb28-180"><a href="#cb28-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-181"><a href="#cb28-181" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sebaran Data</span></span>
+<span id="cb28-182"><a href="#cb28-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-183"><a href="#cb28-183" aria-hidden="true" tabindex="-1"></a>Berikut adalah sebaran data di beberapa kota di Indonesia:</span>
+<span id="cb28-184"><a href="#cb28-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-187"><a href="#cb28-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-188"><a href="#cb28-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb28-189"><a href="#cb28-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-190"><a href="#cb28-190" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_sebaran</span>(<span class="st">"Semarang"</span>)</span>
+<span id="cb28-191"><a href="#cb28-191" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_sebaran</span>(<span class="st">"Jakarta"</span>)</span>
+<span id="cb28-192"><a href="#cb28-192" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_sebaran</span>(<span class="st">"Surabaya"</span>)</span>
+<span id="cb28-193"><a href="#cb28-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-194"><a href="#cb28-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-195"><a href="#cb28-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### *Trend Feel Like*</span></span>
+<span id="cb28-196"><a href="#cb28-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-197"><a href="#cb28-197" aria-hidden="true" tabindex="-1"></a>Berikut adalah *trend feel like* dari beberapa kota di Indonesia berikut:</span>
+<span id="cb28-198"><a href="#cb28-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-201"><a href="#cb28-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-202"><a href="#cb28-202" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb28-203"><a href="#cb28-203" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb28-204"><a href="#cb28-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb28-205"><a href="#cb28-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-206"><a href="#cb28-206" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Semarang"</span>)</span>
+<span id="cb28-207"><a href="#cb28-207" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Jakarta"</span>)</span>
+<span id="cb28-208"><a href="#cb28-208" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Surabaya"</span>)</span>
+<span id="cb28-209"><a href="#cb28-209" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Solo"</span>)</span>
+<span id="cb28-210"><a href="#cb28-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-211"><a href="#cb28-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-212"><a href="#cb28-212" aria-hidden="true" tabindex="-1"></a><span class="fu">### *Trend Humidity*</span></span>
+<span id="cb28-213"><a href="#cb28-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-214"><a href="#cb28-214" aria-hidden="true" tabindex="-1"></a>Berikut adalah *trend humidity* dari beberapa kota di Indonesia berikut:</span>
+<span id="cb28-215"><a href="#cb28-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-218"><a href="#cb28-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-219"><a href="#cb28-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb28-220"><a href="#cb28-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb28-221"><a href="#cb28-221" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb28-222"><a href="#cb28-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-223"><a href="#cb28-223" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Semarang"</span>)</span>
+<span id="cb28-224"><a href="#cb28-224" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Jakarta"</span>)</span>
+<span id="cb28-225"><a href="#cb28-225" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik_2</span>(<span class="st">"Surabaya"</span>)</span>
+<span id="cb28-226"><a href="#cb28-226" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-227"><a href="#cb28-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-228"><a href="#cb28-228" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Rata-Rata</span></span>
+<span id="cb28-229"><a href="#cb28-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-230"><a href="#cb28-230" aria-hidden="true" tabindex="-1"></a>Berikut adalah 10 kota dengan rata-rata *feel like* tertinggi di setiap bulannya.</span>
+<span id="cb28-231"><a href="#cb28-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-234"><a href="#cb28-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-235"><a href="#cb28-235" aria-hidden="true" tabindex="-1"></a>list_bulan <span class="ot">=</span> </span>
+<span id="cb28-236"><a href="#cb28-236" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span></span>
+<span id="cb28-237"><a href="#cb28-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-238"><a href="#cb28-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-239"><a href="#cb28-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bulan =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(waktu)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-240"><a href="#cb28-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bulan,kota) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-241"><a href="#cb28-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">suhu_mean   =</span> <span class="fu">mean</span>(feel_like),</span>
+<span id="cb28-242"><a href="#cb28-242" aria-hidden="true" tabindex="-1"></a>            <span class="at">suhu_median =</span> <span class="fu">median</span>(feel_like)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-243"><a href="#cb28-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-244"><a href="#cb28-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>(bulan)</span>
+<span id="cb28-245"><a href="#cb28-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-246"><a href="#cb28-246" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Januari 2024"</span>)</span>
+<span id="cb28-247"><a href="#cb28-247" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">2</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Februari 2024"</span>)</span>
+<span id="cb28-248"><a href="#cb28-248" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">3</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Maret 2024"</span>)</span>
+<span id="cb28-249"><a href="#cb28-249" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">4</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"April 2024"</span>)</span>
+<span id="cb28-250"><a href="#cb28-250" aria-hidden="true" tabindex="-1"></a>list_bulan[[<span class="dv">5</span>]] <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(suhu_mean)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Mei 2024"</span>)</span>
+<span id="cb28-251"><a href="#cb28-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-252"><a href="#cb28-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-253"><a href="#cb28-253" aria-hidden="true" tabindex="-1"></a><span class="fu"># Perbandingan Suhu Harian Per Area</span></span>
+<span id="cb28-254"><a href="#cb28-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-255"><a href="#cb28-255" aria-hidden="true" tabindex="-1"></a>Pada bagian ini, kita akan kelompokkan semua kota yang ada ke dalam kelompok area *sales* Nutrifood. Kita akan lihat apakah ada area yang memiliki suhu lebih panas (dan signifikan) dibandingkan dengan area yang lain.</span>
+<span id="cb28-256"><a href="#cb28-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-259"><a href="#cb28-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-260"><a href="#cb28-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb28-261"><a href="#cb28-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-262"><a href="#cb28-262" aria-hidden="true" tabindex="-1"></a><span class="co"># kita rapihin dulu</span></span>
+<span id="cb28-263"><a href="#cb28-263" aria-hidden="true" tabindex="-1"></a>df_area_all <span class="ot">=</span> </span>
+<span id="cb28-264"><a href="#cb28-264" aria-hidden="true" tabindex="-1"></a>  df_final <span class="sc">%&gt;%</span></span>
+<span id="cb28-265"><a href="#cb28-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jam =</span> lubridate<span class="sc">::</span><span class="fu">hour</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-266"><a href="#cb28-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(jam <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="sc">&amp;</span> jam <span class="sc">&lt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-267"><a href="#cb28-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area_sales =</span> <span class="fu">case_when</span>(</span>
+<span id="cb28-268"><a href="#cb28-268" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"jakarta|depok|bekasi|bogor|tangerang"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"Jabodetabek"</span>,</span>
+<span id="cb28-269"><a href="#cb28-269" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"semarang|solo|yogyakarta"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"JATENG"</span>,</span>
+<span id="cb28-270"><a href="#cb28-270" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"surabaya|sidoarjo|malang|gresik|probolinggo"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"JATIM"</span>,</span>
+<span id="cb28-271"><a href="#cb28-271" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"bandung|cirebon|tasikmalaya"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"JABAR"</span>,</span>
+<span id="cb28-272"><a href="#cb28-272" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"banjarmasin|balikpapan|samarinda|pontianak"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"KALIMANTAN"</span>,</span>
+<span id="cb28-273"><a href="#cb28-273" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"padang|aceh|medan|tebing tinggi"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"SUM1"</span>,</span>
+<span id="cb28-274"><a href="#cb28-274" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"palembang|lampung|pringsewu|pekanbaru|metro|bitung"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"SUM2"</span>,</span>
+<span id="cb28-275"><a href="#cb28-275" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"palu|makassar|manado|kendari|gorontalo"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"IBT"</span>,</span>
+<span id="cb28-276"><a href="#cb28-276" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"bima|denpasar|kupang"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"BARA"</span>,</span>
+<span id="cb28-277"><a href="#cb28-277" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"jayapura|papua|sorong|ambon"</span>,kota,<span class="at">ignore.case =</span> T) <span class="sc">~</span> <span class="st">"PUMA"</span></span>
+<span id="cb28-278"><a href="#cb28-278" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb28-279"><a href="#cb28-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-280"><a href="#cb28-280" aria-hidden="true" tabindex="-1"></a><span class="co"># kita bikin function</span></span>
+<span id="cb28-281"><a href="#cb28-281" aria-hidden="true" tabindex="-1"></a>bikin_grafik <span class="ot">=</span> <span class="cf">function</span>(kota_sel){</span>
+<span id="cb28-282"><a href="#cb28-282" aria-hidden="true" tabindex="-1"></a>  df_area_all <span class="sc">%&gt;%</span> </span>
+<span id="cb28-283"><a href="#cb28-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(area_sales <span class="sc">==</span> kota_sel) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-284"><a href="#cb28-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tanggal =</span> lubridate<span class="sc">::</span><span class="fu">date</span>(waktu)) <span class="sc">|&gt;</span></span>
+<span id="cb28-285"><a href="#cb28-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tanggal) <span class="sc">|&gt;</span></span>
+<span id="cb28-286"><a href="#cb28-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">feel_like =</span> <span class="fu">mean</span>(feel_like)) <span class="sc">|&gt;</span></span>
+<span id="cb28-287"><a href="#cb28-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb28-288"><a href="#cb28-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tanggal,</span>
+<span id="cb28-289"><a href="#cb28-289" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> feel_like)) <span class="sc">+</span></span>
+<span id="cb28-290"><a href="#cb28-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>,<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb28-291"><a href="#cb28-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb28-292"><a href="#cb28-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-293"><a href="#cb28-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">20</span>,<span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb28-294"><a href="#cb28-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb28-295"><a href="#cb28-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tanggal"</span>,</span>
+<span id="cb28-296"><a href="#cb28-296" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Feel Like (dalam Celcius)"</span>,</span>
+<span id="cb28-297"><a href="#cb28-297" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Kondisi Cuaca"</span>,</span>
+<span id="cb28-298"><a href="#cb28-298" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Feel Like di "</span>,kota_sel),</span>
+<span id="cb28-299"><a href="#cb28-299" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Sumber: openweather.org"</span>) <span class="sc">+</span></span>
+<span id="cb28-300"><a href="#cb28-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb28-301"><a href="#cb28-301" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-302"><a href="#cb28-302" aria-hidden="true" tabindex="-1"></a><span class="co"># kita lihat area salesnya mana aja</span></span>
+<span id="cb28-303"><a href="#cb28-303" aria-hidden="true" tabindex="-1"></a>area_sales_new <span class="ot">=</span> df_area_all <span class="sc">|&gt;</span> <span class="fu">pull</span>(area_sales) <span class="sc">|&gt;</span> <span class="fu">unique</span>() <span class="sc">|&gt;</span> <span class="fu">sort</span>()</span>
+<span id="cb28-304"><a href="#cb28-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-305"><a href="#cb28-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-306"><a href="#cb28-306" aria-hidden="true" tabindex="-1"></a>Berikut adalah _area sales_ yang dimiliki Nutrifood:</span>
+<span id="cb28-307"><a href="#cb28-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-310"><a href="#cb28-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{epoxy}</span></span>
+<span id="cb28-311"><a href="#cb28-311" aria-hidden="true" tabindex="-1"></a><span class="in">- {area_sales_new}</span></span>
+<span id="cb28-312"><a href="#cb28-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-313"><a href="#cb28-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-314"><a href="#cb28-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-317"><a href="#cb28-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-318"><a href="#cb28-318" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb28-319"><a href="#cb28-319" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb28-320"><a href="#cb28-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-321"><a href="#cb28-321" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"SUM1"</span>)</span>
+<span id="cb28-322"><a href="#cb28-322" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"SUM2"</span>)</span>
+<span id="cb28-323"><a href="#cb28-323" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"PUMA"</span>)</span>
+<span id="cb28-324"><a href="#cb28-324" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"BARA"</span>)</span>
+<span id="cb28-325"><a href="#cb28-325" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"IBT"</span>)</span>
+<span id="cb28-326"><a href="#cb28-326" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"Jabodetabek"</span>)</span>
+<span id="cb28-327"><a href="#cb28-327" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"JABAR"</span>)</span>
+<span id="cb28-328"><a href="#cb28-328" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"JATENG"</span>)</span>
+<span id="cb28-329"><a href="#cb28-329" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"JATIM"</span>)</span>
+<span id="cb28-330"><a href="#cb28-330" aria-hidden="true" tabindex="-1"></a><span class="fu">bikin_grafik</span>(<span class="st">"KALIMANTAN"</span>)</span>
+<span id="cb28-331"><a href="#cb28-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
