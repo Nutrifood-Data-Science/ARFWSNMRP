@@ -84,7 +84,7 @@ Berikut adalah kota yang diambil data cuacanya:
 - {kota}
 ```
 
-Kota-kota yang diambil merupakan representasi dari area-area _sales_ di Nutrifood. Beberapa kota baru ditambahkan setelah lebaran 2024 lalu.
+Kota-kota yang diambil merupakan representasi dari area-area *sales* di Nutrifood. Beberapa kota baru ditambahkan setelah lebaran 2024 lalu.
 
 ## Sampel Data
 
@@ -170,7 +170,7 @@ bikin_sebaran = function(kota_sel){
 
 ```
 
-Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni __pukul 08.00 - 18.00__ di kota masing-masing.
+Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni **pukul 08.00 - 18.00** di kota masing-masing.
 
 ### Sebaran Data
 
@@ -236,7 +236,7 @@ list_bulan[[4]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(captio
 list_bulan[[5]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Mei 2024")
 ```
 
-# _FEEL LIKE_ DI AREA _SALES_
+# *FEEL LIKE* DI AREA *SALES*
 
 ## Perbandingan Suhu Harian Per Area
 
@@ -289,12 +289,11 @@ bikin_grafik = function(kota_sel){
 area_sales_new = df_area_all |> pull(area_sales) |> unique() |> sort()
 ```
 
-Berikut adalah _area sales_ yang dimiliki Nutrifood:
+Berikut adalah *area sales* yang dimiliki Nutrifood:
 
 ```{epoxy}
 - {area_sales_new}
 ```
-
 
 ```{r}
 #| warning: false
@@ -312,24 +311,24 @@ bikin_grafik("JATIM")
 bikin_grafik("KALIMANTAN")
 ```
 
-Jika terlihat, ada beberapa area _sales_ yang memiliki tren mendatar dan tren yang berubah-ubah. 
+Jika terlihat, ada beberapa area *sales* yang memiliki tren mendatar dan tren yang berubah-ubah.
 
 Pertanyaannya adalah:
 
-> __Apakah ada perbedaan signifikan suhu feel like antar area tersebut?__
+> **Apakah ada perbedaan signifikan suhu feel like antar area tersebut?**
 
 ## Uji Hipotesis
 
-Pada pengujian hipotesis kali ini, kita akan gunakan metode statistika non parametrik sehingga tidak perlu pengujian normalitas, cukup menggunakan _data as it is_.
+Pada pengujian hipotesis kali ini, kita akan gunakan metode statistika non parametrik sehingga tidak perlu pengujian normalitas, cukup menggunakan *data as it is*.
 
 ### Kruskal Wallis
 
 Tahapan uji hipotesis:
 
-1. $H_0$, yakni __tidak ada perbedaan rata-rata__ _feel like_ di semua area.
-1. $H_1$, yakni __ada perbedaan rata-rata__ _feel like_ di semua area.
-1. Hitung statistika uji, dalam hal ini adalah _p value_.
-1. Ambil kesimpulan dari nilai _p value_ tersebut.
+1.  $H_0$, yakni **tidak ada perbedaan rata-rata** *feel like* di semua area.
+2.  $H_1$, yakni **ada perbedaan rata-rata** *feel like* di semua area.
+3.  Hitung statistika uji, dalam hal ini adalah *p value*.
+4.  Ambil kesimpulan dari nilai *p value* tersebut.
 
 ```{r}
 #| message: false
@@ -342,15 +341,15 @@ p_val_1 = uji[[3]] * 100
 p_val_2 = round(p_val_1,0)
 ```
 
-Kita dapatkan bahwa _p value_ sebesar `r p_val_1` alias __`r p_val_2`__ yang berarti __tolak__ $H_0$.
+Kita dapatkan bahwa *p value* sebesar `r p_val_1` alias **`r p_val_2`** yang berarti **tolak** $H_0$.
 
-> Ada perbedaan rata-rata _feel like_ di semua area.
+> Ada perbedaan rata-rata *feel like* di semua area.
 
-Berarti setidaknya ada satu area yang memiliki rata-rata _feel like_ yang berbeda dengan area yang lain.
+Berarti setidaknya ada satu area yang memiliki rata-rata *feel like* yang berbeda dengan area yang lain.
 
 ### Area yang Mana?
 
-Untuk menjawabnya, kita akan gunakan __Wilcox Text__ untu menguji rata-rata _feel like_ dari semua pasangan area yang ada.
+Untuk menjawabnya, kita akan gunakan **Wilcox Text** untu menguji rata-rata *feel like* dari semua pasangan area yang ada.
 
 Berikut adalah hasilnya:
 
@@ -399,6 +398,3 @@ data_area_pair |>
   reshape2::dcast(area_1 ~ area_2, value.var = "kesimpulan") |>
   knitr::kable()
 ```
-
-
-
