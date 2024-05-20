@@ -38,3 +38,5 @@ Padang
 Kupang
 Sorong
 Denpasar
+Cirebon
+Tasikmalaya

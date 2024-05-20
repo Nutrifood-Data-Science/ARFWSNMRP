@@ -26,4 +26,4 @@ df_final = df_final |> mutate(waktu = waktu + lubridate::hours(7))
 setwd("~/ARFWSNMRP/Clean Data")
 save(df_final,file = "data all.rda")
 
-df_final %>% openxlsx::write.xlsx("Data All per 13 May 2024.xlsx")
+df_final %>% openxlsx::write.xlsx("Data All per 20 May 2024.xlsx")

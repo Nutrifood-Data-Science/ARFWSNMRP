@@ -84,38 +84,56 @@ Berikut adalah kota yang diambil data cuacanya:
 - {kota}
 ```
 
+Kota-kota yang diambil merupakan representasi dari area-area *sales* di Nutrifood. Beberapa kota baru ditambahkan setelah lebaran 2024 lalu.
+
 ## Sampel Data
 
 ```{r}
 #| include: false
 
+kota_sel = "Semarang"
+
 bikin_grafik = function(kota_sel){
   df_final %>% 
   filter(kota == kota_sel) %>% 
-  ggplot(aes(x = waktu,
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18) |>
+  mutate(tanggal = lubridate::date(waktu)) |>
+  group_by(tanggal) |>
+  summarise(feel_like = mean(feel_like)) |>
+  ungroup() |>
+  ggplot(aes(x = tanggal,
              y = feel_like)) +
+  geom_smooth(method = "loess",alpha = .3) +
   geom_line(color = "gray") +
-  geom_point(aes(color = kondisi)) +
+  geom_point() +
   ylim(20,45) +
   theme_minimal() +
-  labs(x = "Waktu (per tiga jam)",
+  labs(x = "Tanggal",
        y = "Feel Like (dalam Celcius)",
        color = "Kondisi Cuaca",
        title = paste0("Feel Like di ",kota_sel),
        subtitle = "Sumber: openweather.org") +
   theme(legend.position = "bottom")
-}
+  }
 
 bikin_grafik_2 = function(kota_sel){
   df_final %>% 
   filter(kota == kota_sel) %>% 
-  ggplot(aes(x = waktu,
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18) |>
+  mutate(tanggal = lubridate::date(waktu)) |>
+  group_by(tanggal) |>
+  summarise(humidity = mean(humidity)) |>
+  ungroup() |> 
+  ggplot(aes(x = tanggal,
              y = humidity)) +
+  geom_smooth(method = "loess",alpha = .3) +
   geom_line(color = "gray") +
-  geom_point(aes(color = kondisi)) +
+  geom_point() +
   #ylim(20,45) +
   theme_minimal() +
-  labs(x = "Waktu (per tiga jam)",
+  labs(x = "Tanggal",
        y = "Humidity",
        color = "Kondisi Cuaca",
        title = paste0("Humidity di ",kota_sel),
@@ -127,11 +145,14 @@ bikin_grafik_2 = function(kota_sel){
 bikin_sebaran = function(kota_sel){
   df_temp = 
   df_final %>% 
-  filter(kota == kota_sel) 
+  filter(kota == kota_sel) |>
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18)
 
-  mean_sel   = df_temp$feel_like %>% mean() %>% round(2)
-  median_sel = df_temp$feel_like %>% median() %>% round(2)
-  pesan      = paste0("Mean: ",mean_sel,"C\nMedian: ",median_sel,"C")
+  mean_sel   = df_temp$feel_like %>% mean() %>% round(1)
+  median_sel = df_temp$feel_like %>% median() %>% round(1)
+  pesan      = paste0("Mean: ",mean_sel,"C\nMedian: ",
+                      median_sel,"C")
 
   df_temp %>% 
     ggplot(aes(y = feel_like)) +
@@ -149,34 +170,58 @@ bikin_sebaran = function(kota_sel){
 
 ```
 
-Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut.
+Pada bagian ini, kita akan melihat data cuaca di beberapa kota berikut. Namun saya akan menggunakan data pada waktu jam kerja, yakni **pukul 08.00 - 18.00** di kota masing-masing.
 
 ### Sebaran Data
+
+Berikut adalah sebaran data di beberapa kota di Indonesia:
 
 ```{r}
 #| fig-align: center
 
 bikin_sebaran("Semarang")
 bikin_sebaran("Jakarta")
+bikin_sebaran("Surabaya")
 ```
 
 ### *Trend Feel Like*
 
+Berikut adalah *trend feel like* dari beberapa kota di Indonesia berikut:
+
 ```{r}
 #| fig-align: center
+#| warning: false
+#| message: false
 
 bikin_grafik("Semarang")
 bikin_grafik("Jakarta")
+bikin_grafik("Surabaya")
+bikin_grafik("Solo")
+```
+
+### *Trend Humidity*
+
+Berikut adalah *trend humidity* dari beberapa kota di Indonesia berikut:
+
+```{r}
+#| fig-align: center
+#| warning: false
+#| message: false
 
 bikin_grafik_2("Semarang")
 bikin_grafik_2("Jakarta")
+bikin_grafik_2("Surabaya")
 ```
 
-# Data rata-rata
+## Data Rata-Rata
+
+Berikut adalah 10 kota dengan rata-rata *feel like* tertinggi di setiap bulannya.
 
 ```{r}
 list_bulan = 
-  df_final %>% 
+  df_final %>%
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18) |>
   mutate(bulan = lubridate::month(waktu)) %>% 
   group_by(bulan,kota) %>% 
   summarise(suhu_mean   = mean(feel_like),
@@ -184,9 +229,180 @@ list_bulan =
   ungroup() %>% 
   group_split(bulan)
 
+<<<<<<< HEAD
 list_bulan[[1]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
 list_bulan[[2]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
 list_bulan[[3]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
 list_bulan[[4]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
 list_bulan[[5]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
+=======
+list_bulan[[1]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Januari 2024")
+list_bulan[[2]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Februari 2024")
+list_bulan[[3]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Maret 2024")
+list_bulan[[4]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "April 2024")
+list_bulan[[5]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Mei 2024")
+```
+
+# *FEEL LIKE* DI AREA *SALES*
+
+## Perbandingan Suhu Harian Per Area
+
+Pada bagian ini, kita akan kelompokkan semua kota yang ada ke dalam kelompok area *sales* Nutrifood. Kita akan lihat apakah ada area yang memiliki suhu lebih panas (dan signifikan) dibandingkan dengan area yang lain.
+
+```{r}
+#| include: false
+
+# kita rapihin dulu
+df_area_all = 
+  df_final %>%
+  mutate(jam = lubridate::hour(waktu)) |>
+  filter(jam >= 8 & jam <= 18) |>
+  mutate(area_sales = case_when(
+    grepl("jakarta|depok|bekasi|bogor|tangerang",kota,ignore.case = T) ~ "Jabodetabek",
+    grepl("semarang|solo|yogyakarta",kota,ignore.case = T) ~ "JATENG",
+    grepl("surabaya|sidoarjo|malang|gresik|probolinggo",kota,ignore.case = T) ~ "JATIM",
+    grepl("bandung|cirebon|tasikmalaya",kota,ignore.case = T) ~ "JABAR",
+    grepl("banjarmasin|balikpapan|samarinda|pontianak",kota,ignore.case = T) ~ "KALIMANTAN",
+    grepl("padang|aceh|medan|tebing tinggi",kota,ignore.case = T) ~ "SUM1",
+    grepl("palembang|lampung|pringsewu|pekanbaru|metro|bitung",kota,ignore.case = T) ~ "SUM2",
+    grepl("palu|makassar|manado|kendari|gorontalo",kota,ignore.case = T) ~ "IBT",
+    grepl("bima|denpasar|kupang",kota,ignore.case = T) ~ "BARA",
+    grepl("jayapura|papua|sorong|ambon",kota,ignore.case = T) ~ "PUMA"
+  ))
+
+# kita bikin function
+bikin_grafik = function(kota_sel){
+  df_area_all %>% 
+  filter(area_sales == kota_sel) %>% 
+  mutate(tanggal = lubridate::date(waktu)) |>
+  group_by(tanggal) |>
+  summarise(feel_like = mean(feel_like)) |>
+  ungroup() |>
+  ggplot(aes(x = tanggal,
+             y = feel_like)) +
+  geom_smooth(method = "loess",alpha = .3) +
+  geom_line(color = "gray") +
+  geom_point() +
+  ylim(20,45) +
+  theme_minimal() +
+  labs(x = "Tanggal",
+       y = "Feel Like (dalam Celcius)",
+       color = "Kondisi Cuaca",
+       title = paste0("Feel Like di ",kota_sel),
+       subtitle = "Sumber: openweather.org") +
+  theme(legend.position = "bottom")
+}
+# kita lihat area salesnya mana aja
+area_sales_new = df_area_all |> pull(area_sales) |> unique() |> sort()
+```
+
+Berikut adalah *area sales* yang dimiliki Nutrifood:
+
+```{epoxy}
+- {area_sales_new}
+```
+
+```{r}
+#| warning: false
+#| message: false
+
+bikin_grafik("SUM1")
+bikin_grafik("SUM2")
+bikin_grafik("PUMA")
+bikin_grafik("BARA")
+bikin_grafik("IBT")
+bikin_grafik("Jabodetabek")
+bikin_grafik("JABAR")
+bikin_grafik("JATENG")
+bikin_grafik("JATIM")
+bikin_grafik("KALIMANTAN")
+```
+
+Jika terlihat, ada beberapa area *sales* yang memiliki tren mendatar dan tren yang berubah-ubah.
+
+Pertanyaannya adalah:
+
+> **Apakah ada perbedaan signifikan suhu feel like antar area tersebut?**
+
+## Uji Hipotesis
+
+Pada pengujian hipotesis kali ini, kita akan gunakan metode statistika non parametrik sehingga tidak perlu pengujian normalitas, cukup menggunakan *data as it is*.
+
+### Kruskal Wallis
+
+Tahapan uji hipotesis:
+
+1.  $H_0$, yakni **tidak ada perbedaan rata-rata** *feel like* di semua area.
+2.  $H_1$, yakni **ada perbedaan rata-rata** *feel like* di semua area.
+3.  Hitung statistika uji, dalam hal ini adalah *p value*.
+4.  Ambil kesimpulan dari nilai *p value* tersebut.
+
+```{r}
+#| message: false
+#| warning: false
+
+uji = kruskal.test(feel_like~area_sales,df_area_all)
+uji  
+
+p_val_1 = uji[[3]] * 100
+p_val_2 = round(p_val_1,0)
+```
+
+Kita dapatkan bahwa *p value* sebesar `r p_val_1` alias **`r p_val_2`** yang berarti **tolak** $H_0$.
+
+> Ada perbedaan rata-rata *feel like* di semua area.
+
+Berarti setidaknya ada satu area yang memiliki rata-rata *feel like* yang berbeda dengan area yang lain.
+
+### Area yang Mana?
+
+Untuk menjawabnya, kita akan gunakan **Wilcox Text** untu menguji rata-rata *feel like* dari semua pasangan area yang ada.
+
+Berikut adalah hasilnya:
+
+```{r}
+input_func = c("JABAR","JATENG")
+
+hitung_pasang = function(input_func){
+  df_new = df_area_all |> filter(area_sales %in% input_func)
+  hasil  = wilcox.test(feel_like~area_sales,df_new)
+  p_val  = hasil$p.value
+  # tulis kesimpulan
+  kesimpulan = ifelse(p_val < 0.05,"Beda","Sama")
+  return(kesimpulan)
+}
+
+# kita buat summary dulu ya
+df_area_all |>
+  group_by(area_sales) |>
+  summarise(rata = mean(feel_like)) |>
+  ungroup() |>
+  mutate(rata = round(rata,2)) |>
+  knitr::kable()
+
+data_area_pair = 
+  expand.grid(area_sales_new,area_sales_new) |>
+  as.data.frame() |>
+  rename(area_1 = Var1,
+         area_2 = Var2) |>
+  filter(area_1 != area_2) |>
+  mutate(area_1 = as.character(area_1),
+         area_2 = as.character(area_2))
+
+input_list = vector("list",nrow(data_area_pair))
+
+for(i in 1:nrow(data_area_pair)){
+  input_list[[i]] = c(data_area_pair$area_1[i],
+                      data_area_pair$area_2[i])
+}
+
+library(parallel)
+n_core = detectCores()
+output = mclapply(input_list,hitung_pasang,mc.cores = n_core) |> unlist()
+data_area_pair$kesimpulan = output
+
+data_area_pair |>
+  reshape2::dcast(area_1 ~ area_2, value.var = "kesimpulan") |>
+  knitr::kable()
+>>>>>>> 9fda35a3aa4334d1b35dda4165802423e90ca4ee
 ```
