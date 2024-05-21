@@ -229,13 +229,6 @@ list_bulan =
   ungroup() %>% 
   group_split(bulan)
 
-<<<<<<< HEAD
-list_bulan[[1]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[2]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[3]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[4]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-list_bulan[[5]] %>% arrange(desc(suhu_mean)) %>% knitr::kable()
-=======
 list_bulan[[1]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Januari 2024")
 list_bulan[[2]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Februari 2024")
 list_bulan[[3]] %>% arrange(desc(suhu_mean)) |> head(10) %>% knitr::kable(caption = "Maret 2024")
@@ -404,5 +397,4 @@ data_area_pair$kesimpulan = output
 data_area_pair |>
   reshape2::dcast(area_1 ~ area_2, value.var = "kesimpulan") |>
   knitr::kable()
->>>>>>> 9fda35a3aa4334d1b35dda4165802423e90ca4ee
 ```
