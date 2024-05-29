@@ -33,6 +33,8 @@ cuaca_kota = function(i){
     humidity  = data$main$humidity
     feel_like = data$main$feels_like
     kota      = data$name
+    pressure  = data$main$pressure
+    wind_spd  = data$wind$speed
     kondisi   = data$weather$main
     kondisi_d = data$weather$description
     negara    = data$sys$country
@@ -41,6 +43,7 @@ cuaca_kota = function(i){
     output = data.frame(negara,
                         kota,kondisi,detail_kondisi = kondisi_d,
                         suhu,suhu_min,suhu_max,feel_like,
+                        pressure,wind_spd,
                         humidity,lon,lat,
                         time = Sys.time())
 
