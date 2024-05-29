@@ -20,7 +20,7 @@ ambil_data = function(input){
 
 # kita ambil semaunya
 df_temp  = mclapply(files,ambil_data,mc.cores = n_core)
-df_final = do.call(rbind,df_temp) %>% distinct() %>% arrange(kota,waktu) %>% select(-time)
+df_final = do.call(bind_rows,df_temp) %>% distinct() %>% arrange(kota,waktu) %>% select(-time)
 df_final = df_final |> mutate(waktu = waktu + lubridate::hours(7))
 
 setwd("~/ARFWSNMRP/Clean Data")
