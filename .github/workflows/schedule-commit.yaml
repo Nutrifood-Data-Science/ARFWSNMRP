@@ -3,7 +3,7 @@ on:
     #branches: main
   schedule:
     #- cron: "*/30 * * * *"   # run every 30 mins
-    - cron: "0 */3 * * *"  # run every 3 hrs
+    - cron: "0 */2 * * *"  # run every 2 hrs
     
 jobs:
   import-data:
