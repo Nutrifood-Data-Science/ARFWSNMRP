@@ -21,7 +21,7 @@ ambil_data = function(input){
 # kita ambil semaunya
 df_temp  = mclapply(files,ambil_data,mc.cores = n_core)
 df_final = 
-  data.table::rbindlist(df_temp) %>% 
+  data.table::rbindlist(df_temp,fill = T) %>% 
   distinct() %>%
   arrange(kota,waktu) %>% 
   select(-time)
