@@ -18,6 +18,6 @@ temp  = mclapply(files,ambil_dat,mc.cores = n_core)
 final = data.table::rbindlist(temp) |> as.data.frame()
 # final = do.call(rbind,temp)
 
-write.csv(final,"~/ARFWSNMRP/Agregat/agregat 14 agt 2024.csv")
+write.csv(final,"~/ARFWSNMRP/Agregat/agregat 15 agt 2024.csv")
 
 unlink(files)
