@@ -1,0 +1,394 @@
+---
+title: "Cuaca 2023 vs 2024"
+subtitle: "Sebuah Analisa Sederhana"
+author: "Departemen Market Research"
+institute: Nutrifood Indonesia
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: Perbandingan Cuaca
+    incremental: false
+    show-slide-number: all
+    transition: convex
+    width: 1280
+    height: 720
+    highlight-style: arrow-dark
+    output-location: column
+    code-overflow: scroll
+    scrollable: true
+    fig-dpi: 900
+    fig-format: svg
+    fig-align: center
+editor: visual
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+
+setwd("~/ARFWSNMRP/Report/perbandingan cuaca")
+
+rm(list=ls())
+gc()
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggpubr)
+
+```
+
+# LATAR BELAKANG
+
+## Latar Belakang {.center .smaller}
+
+### Tujuan 
+
+Mencari tahu apakah ada perbedaan suhu (baik kondisi cuaca dan _real feel_) dari kota-kota tertentu.
+
+### Metode
+
+Melakukan berbagai analisa perbandingan cuaca pada tahun 2023 dan 2024. Analisa dilakukan pada _selected cities_ pada kedua tahun.
+
+
+### Data yang Digunakan
+
+Data cuaca 2023 berasal dari _purchased weather data_ di situs [_openweather_](openweathermap.org) sedangkan data cuaca 2024 berasal dari _web scrape_ per jam dari situs yang sama.   
+
+
+```{r}
+#| include: false
+
+load("data cuaca perbandingan.rda")
+```
+
+# HASIL ANALISA I
+
+Perbandingan kondisi cuaca 2023 - 2024 pada jam 07.00 - 18.00
+
+---
+
+::: {style="font-size: 50%;"}
+
+Menggunakan data kondisi cuaca pada jam kerja (07.00 - 18.00) di semua kota yang ada, __persentase__ ___rain___ __pada 2024 lebih rendah dibandingkan pada 2023__.
+
+:::
+
+```{r}
+df_all |> 
+  ggplot(aes(x = kondisi,y = persen,fill = as.factor(tahun))) +
+  geom_col(position = position_dodge(),color = "black") +
+  geom_label(aes(label = label,
+                 y = persen + 15),
+             position = position_dodge(width = .9),size = 2,
+             alpha = .8,
+             color = "white") +
+  scale_fill_manual(values = c("darkgreen","steelblue")) +
+  facet_wrap(~kota,ncol = 4) +
+  ylim(0,120) +
+  scale_x_discrete(guide = guide_axis(n.dodge = 3)) +
+  labs(title = "Kondisi Cuaca pada Pukul 07.00-18.00",
+       fill = "Tahun") +
+  theme_minimal() +
+  theme(axis.text.x     = element_text(size = 8),
+        legend.position = "bottom",
+        axis.text.y     = element_blank(),
+        axis.title      = element_blank(),
+        strip.background = element_rect(),
+        strip.text       = element_text(face = "bold")
+        )
+```
+
+
+# HASIL ANALISA II
+
+Perbandingan temperatur _feels like_ 2023 - 2024 pada jam 07.00 - 18.00
+
+
+```{r}
+#| include: false
+rm(list=ls())
+gc()
+load("data perbandingan.rda")
+```
+
+
+---
+
+::: {style="font-size: 50%;"}
+
+Menggunakan data _feels like_ pada jam kerja (07.00 - 18.00) di semua kota yang ada, kita bisa membuat _trend line_ dari temperatur _feels like_. Kita bisa melihat pada beberapa kota terjadi kenaikan tren temperatur dan di sebagian kota lainnya terjadi penurunan tren temperatur.
+
+:::
+
+```{r}
+#| warning: false
+#| message: false
+
+df_all |> 
+  ggplot(aes(x = waktu,y = feel_like)) +
+  geom_smooth(method = "loess") +
+  geom_line(aes(group = kota),alpha = .15) +
+  facet_wrap(~kota) +
+  labs(title = "Tren Feels Like di Beberapa Kota pada Pukul 07.00-18.00",
+       x = "Timeline",
+       y = "Feels like (dalam Celcius)") +
+  theme_minimal() +
+  theme(axis.text.x     = element_text(size = 8),
+        strip.background = element_rect(),
+        strip.text       = element_text(face = "bold")
+        )
+```
+
+---
+
+::: {style="font-size: 50%;"}
+
+Visualisasi _boxplot_ _feels like_ per kota masih konsisten dengan _trend line_ sebelumnya. Pada sebagian kota, temperatur _feels like_ pada 2023 lebih tinggi dibandingkan tahun 2024. Namun, pada sebagian kota lainnya temperatur pada 2023 lebih rendah dibandingkan tahun 2024.
+
+:::
+
+
+```{r}
+df_all |> 
+  ggplot(aes(y = feel_like,x = as.factor(tahun))) +
+  geom_boxplot(aes(group = tahun)) +
+  facet_wrap(~kota) +
+  labs(title = "Boxplots Feels Like di Beberapa Kota pada Pukul 07.00-18.00",
+       x = "Tahun",
+       y = "Feels like (dalam Celcius)") +
+  theme_minimal() +
+  theme(axis.text.x     = element_text(size = 8),
+        strip.background = element_rect(),
+        strip.text       = element_text(face = "bold")
+        )
+```
+
+## Analisa __t Test__ untuk Semua Kota {.smaller .center}
+
+```{r}
+sums = t.test(feel_like ~ tahun,data = df_all)
+sums
+
+p_val      = sums$p.value
+kesimpulan = ifelse(p_val < 0.05,"Ada perbedaan sig","Tidak ada perbedaan")
+```
+
+__Kesimpulan:__ `r kesimpulan`.
+
+> Temperatur _feels like_ pada 2023 lebih tinggi `sig` dibandingkan 2023.
+
+
+```{r}
+#| include: false
+
+df_split = df_all |> group_split(kota)
+
+analisa = function(input){
+  sums       = t.test(feel_like ~ tahun,data = input)
+  p_val      = sums$p.value
+  kota       = input |> pull(kota) |> unique()
+  mean_tahun = sums$estimate
+  suhu_23    = mean_tahun[1] |> as.numeric()
+  suhu_24    = mean_tahun[2] |> as.numeric()
+  kesimpulan = ifelse(p_val < 0.05,"Ada perbedaan sig","Tidak ada perbedaan")
+  perbanding = ifelse(suhu_23 < suhu_24,"2023 < 2024","2023 > 2024")
+  output     = list(`Kota yang dianalisa` = kota,
+                    `Angka mean tahunan`  = mean_tahun,
+                    `Perbandingan mean feels like` = perbanding,
+                    `Tes signifikansi`    = kesimpulan)
+  return(output)
+}
+
+```
+
+
+## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+
+::::: columns
+::: {.column width="50%"}
+
+```{r}
+ikanx = 1
+analisa(df_split[[ikanx]])
+
+cat(" ============================== ")
+
+ikanx = 2
+analisa(df_split[[ikanx]])
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+ikanx = 3
+analisa(df_split[[ikanx]])
+
+cat(" ============================== ")
+
+ikanx = 4
+analisa(df_split[[ikanx]])
+```
+
+:::
+::::: 
+
+
+
+## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+
+::::: columns
+::: {.column width="50%"}
+
+```{r}
+ikanx = 5
+analisa(df_split[[ikanx]])
+
+cat(" ============================== ")
+
+ikanx = 6
+analisa(df_split[[ikanx]])
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+ikanx = 7
+analisa(df_split[[ikanx]])
+
+cat(" ============================== ")
+
+ikanx = 8
+analisa(df_split[[ikanx]])
+```
+
+:::
+::::: 
+
+
+## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+
+::::: columns
+::: {.column width="50%"}
+
+```{r}
+ikanx = 9
+analisa(df_split[[ikanx]])
+
+cat(" ============================== ")
+
+ikanx = 10
+analisa(df_split[[ikanx]])
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+ikanx = 11
+analisa(df_split[[ikanx]])
+
+cat(" ============================== ")
+
+ikanx = 12
+analisa(df_split[[ikanx]])
+```
+
+:::
+::::: 
+
+
+## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+
+```{r}
+ikanx = 13
+analisa(df_split[[ikanx]])
+```
+
+## Kesimpulan __t Test__ Masing-Masing Kota {.center .smaller}
+
+
+Sebanyak __10 dari 13 kota__ yang dianalisa memiliki temperatur _feels like_ pada 2023 __lebih tinggi (sig)__ dibandingkan pada 2024.
+
+::::: columns
+::: {.column width="60%"}
+
+```{r}
+library(parallel)
+library(kableExtra)
+library(janitor)
+
+ncore = detectCores()
+
+analisa = function(input){
+  sums       = t.test(feel_like ~ tahun,data = input)
+  p_val      = sums$p.value
+  kota       = input |> pull(kota) |> unique()
+  mean_tahun = sums$estimate
+  suhu_23    = mean_tahun[1] |> as.numeric()
+  suhu_24    = mean_tahun[2] |> as.numeric()
+  kesimpulan = ifelse(p_val < 0.05,"Ada perbedaan sig","Tidak ada perbedaan")
+  perbanding = ifelse(suhu_23 < suhu_24,"2023 < 2024","2023 > 2024")
+  output     = data.frame(
+    "Kota yang dianalisa" = kota,
+    "Mean 2023"           = round(suhu_23,2),
+    "Mean 2024"           = round(suhu_24,2),
+    "Tes signifikansi"    = kesimpulan,
+    "Perbandingan mean feels like" = perbanding)
+  return(output)
+}
+
+temp  = mclapply(df_split,analisa,mc.cores = ncore)
+hasil = data.table::rbindlist(temp) |> as.data.frame()
+
+hasil |> 
+  kable("html") %>%
+  kable_styling(font_size = 12)
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| fig-dpi: 500
+#| fig-width: 10
+hasil |> 
+  tabyl(Perbandingan.mean.feels.like) |> 
+  adorn_pct_formatting() |> 
+  mutate(label = paste0(Perbandingan.mean.feels.like,
+                        "\nn kota = ",n,"\n",percent)) |> 
+  ggplot() +
+  geom_col(aes(x = 1,y = n,fill = Perbandingan.mean.feels.like),
+           color = "black",
+           just = 0, width = 1) +
+  geom_label(aes(x = 1.5, 
+                 y = n, 
+                 label = label,
+                 group = Perbandingan.mean.feels.like),
+             position = position_stack(vjust = 0.5),
+             size = 6) +
+  coord_polar(theta = "y", start = 0, direction = 1) +
+  xlim(c(0, 2)) +
+  theme_void() +
+  theme(axis.text = element_blank(),
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        axis.line = element_blank()) +
+  scale_fill_manual(values = c("steelblue","darkgreen"))
+
+```
+
+:::
+
+::::: 
+
+
+# TERIMA KASIH
+
