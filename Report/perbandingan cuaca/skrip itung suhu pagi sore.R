@@ -48,7 +48,7 @@ ambilin = function(input){
            waktu = waktu + lubridate::hours(7),
            jam   = lubridate::hour(waktu)) |> 
     mutate(tahun = lubridate::year(waktu)) |> 
-    filter(tahun == 2023) |> 
+    filter(tahun %in% 2021:2023) |> 
     rename(kota    = city_name,
            kondisi = weather_main) |>  
     # Filter di jam tertentu
@@ -84,7 +84,7 @@ kota_2023 = df_2023 |> pull(kota) |> unique() |> sort()
 df_all = rbind(df_2023,df_2024) |> mutate(tahun = lubridate::year(waktu))
 
 setwd("~/ARFWSNMRP/Report/perbandingan cuaca")
-save(df_all,file = "data perbandingan.rda")
+save(df_all,file = "data perbandingan for reg.rda")
 
 
 df_all |> 

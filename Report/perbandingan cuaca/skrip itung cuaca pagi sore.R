@@ -76,7 +76,7 @@ ambilin = function(input){
            waktu = waktu + lubridate::hours(7),
            jam   = lubridate::hour(waktu)) |> 
     mutate(tahun = lubridate::year(waktu)) |> 
-    filter(tahun == 2023) |> 
+    filter(tahun %in% 2021:2023) |> 
     rename(kota    = city_name,
            kondisi = weather_main) |> 
     # gabung kondisi cuaca
