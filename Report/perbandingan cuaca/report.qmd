@@ -46,19 +46,17 @@ library(ggpubr)
 
 ## Latar Belakang {.center .smaller}
 
-### Tujuan 
+### Tujuan
 
-Mencari tahu apakah ada perbedaan suhu (baik kondisi cuaca dan _real feel_) dari kota-kota tertentu.
+Mencari tahu apakah ada perbedaan suhu (baik kondisi cuaca dan *real feel*) dari kota-kota tertentu.
 
 ### Metode
 
-Melakukan berbagai analisa perbandingan cuaca pada tahun 2023 dan 2024. Analisa dilakukan pada _selected cities_ pada kedua tahun.
-
+Melakukan berbagai analisa perbandingan cuaca pada tahun 2023 dan 2024. Analisa dilakukan pada *selected cities* pada kedua tahun.
 
 ### Data yang Digunakan
 
-Data cuaca 2023 berasal dari _purchased weather data_ di situs [_openweather_](openweathermap.org) sedangkan data cuaca 2024 berasal dari _web scrape_ per jam dari situs yang sama.   
-
+Data cuaca 2023 berasal dari *purchased weather data* di situs [*openweather*](openweathermap.org) sedangkan data cuaca 2024 berasal dari *web scrape* per jam dari situs yang sama.
 
 ```{r}
 #| include: false
@@ -70,12 +68,10 @@ load("data cuaca perbandingan.rda")
 
 Perbandingan kondisi cuaca 2023 - 2024 pada jam 07.00 - 18.00
 
----
+------------------------------------------------------------------------
 
 ::: {style="font-size: 50%;"}
-
-Menggunakan data kondisi cuaca pada jam kerja (07.00 - 18.00) di semua kota yang ada, __persentase__ ___rain___ __pada 2024 lebih rendah dibandingkan pada 2023__.
-
+Menggunakan data kondisi cuaca pada jam kerja (07.00 - 18.00) di semua kota yang ada, **persentase** ***rain*** **pada 2024 lebih rendah dibandingkan pada 2023**.
 :::
 
 ```{r}
@@ -103,11 +99,9 @@ df_all |>
         )
 ```
 
-
 # HASIL ANALISA II
 
-Perbandingan temperatur _feels like_ 2023 - 2024 pada jam 07.00 - 18.00
-
+Perbandingan temperatur *feels like* 2023 - 2024 pada jam 07.00 - 18.00
 
 ```{r}
 #| include: false
@@ -116,13 +110,10 @@ gc()
 load("data perbandingan.rda")
 ```
 
-
----
+------------------------------------------------------------------------
 
 ::: {style="font-size: 50%;"}
-
-Menggunakan data _feels like_ pada jam kerja (07.00 - 18.00) di semua kota yang ada, kita bisa membuat _trend line_ dari temperatur _feels like_. Kita bisa melihat pada beberapa kota terjadi kenaikan tren temperatur dan di sebagian kota lainnya terjadi penurunan tren temperatur.
-
+Menggunakan data *feels like* pada jam kerja (07.00 - 18.00) di semua kota yang ada, kita bisa membuat *trend line* dari temperatur *feels like*. Kita bisa melihat pada beberapa kota terjadi kenaikan tren temperatur dan di sebagian kota lainnya terjadi penurunan tren temperatur.
 :::
 
 ```{r}
@@ -144,14 +135,11 @@ df_all |>
         )
 ```
 
----
+------------------------------------------------------------------------
 
 ::: {style="font-size: 50%;"}
-
-Visualisasi _boxplot_ _feels like_ per kota masih konsisten dengan _trend line_ sebelumnya. Pada sebagian kota, temperatur _feels like_ pada 2023 lebih tinggi dibandingkan tahun 2024. Namun, pada sebagian kota lainnya temperatur pada 2023 lebih rendah dibandingkan tahun 2024.
-
+Visualisasi *boxplot* *feels like* per kota masih konsisten dengan *trend line* sebelumnya. Pada sebagian kota, temperatur *feels like* pada 2023 lebih tinggi dibandingkan tahun 2024. Namun, pada sebagian kota lainnya temperatur pada 2023 lebih rendah dibandingkan tahun 2024.
 :::
-
 
 ```{r}
 df_all |> 
@@ -168,7 +156,7 @@ df_all |>
         )
 ```
 
-## Analisa __t Test__ untuk Semua Kota {.smaller .center}
+## Analisa **t Test** untuk Semua Kota {.smaller .center}
 
 ```{r}
 sums = t.test(feel_like ~ tahun,data = df_all)
@@ -178,10 +166,9 @@ p_val      = sums$p.value
 kesimpulan = ifelse(p_val < 0.05,"Ada perbedaan sig","Tidak ada perbedaan")
 ```
 
-__Kesimpulan:__ `r kesimpulan`.
+**Kesimpulan:** `r kesimpulan`.
 
-> Temperatur _feels like_ pada 2023 lebih tinggi `sig` dibandingkan 2023.
-
+> Temperatur *feels like* pada 2023 lebih tinggi `sig` dibandingkan 2023.
 
 ```{r}
 #| include: false
@@ -206,12 +193,10 @@ analisa = function(input){
 
 ```
 
-
-## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+## Analisa **t Test** Masing-Masing Kota {.smaller .center}
 
 ::::: columns
 ::: {.column width="50%"}
-
 ```{r}
 ikanx = 1
 analisa(df_split[[ikanx]])
@@ -221,10 +206,9 @@ cat(" ============================== ")
 ikanx = 2
 analisa(df_split[[ikanx]])
 ```
-
 :::
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r}
 ikanx = 3
 analisa(df_split[[ikanx]])
@@ -234,17 +218,13 @@ cat(" ============================== ")
 ikanx = 4
 analisa(df_split[[ikanx]])
 ```
-
 :::
-::::: 
+:::::
 
-
-
-## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+## Analisa **t Test** Masing-Masing Kota {.smaller .center}
 
 ::::: columns
 ::: {.column width="50%"}
-
 ```{r}
 ikanx = 5
 analisa(df_split[[ikanx]])
@@ -254,10 +234,9 @@ cat(" ============================== ")
 ikanx = 6
 analisa(df_split[[ikanx]])
 ```
-
 :::
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r}
 ikanx = 7
 analisa(df_split[[ikanx]])
@@ -267,16 +246,13 @@ cat(" ============================== ")
 ikanx = 8
 analisa(df_split[[ikanx]])
 ```
-
 :::
-::::: 
+:::::
 
-
-## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+## Analisa **t Test** Masing-Masing Kota {.smaller .center}
 
 ::::: columns
 ::: {.column width="50%"}
-
 ```{r}
 ikanx = 9
 analisa(df_split[[ikanx]])
@@ -286,10 +262,9 @@ cat(" ============================== ")
 ikanx = 10
 analisa(df_split[[ikanx]])
 ```
-
 :::
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r}
 ikanx = 11
 analisa(df_split[[ikanx]])
@@ -299,26 +274,22 @@ cat(" ============================== ")
 ikanx = 12
 analisa(df_split[[ikanx]])
 ```
-
 :::
-::::: 
+:::::
 
-
-## Analisa __t Test__ Masing-Masing Kota {.smaller .center}
+## Analisa **t Test** Masing-Masing Kota {.smaller .center}
 
 ```{r}
 ikanx = 13
 analisa(df_split[[ikanx]])
 ```
 
-## Kesimpulan __t Test__ Masing-Masing Kota {.center .smaller}
+## Kesimpulan **t Test** Masing-Masing Kota {.center .smaller}
 
-
-Sebanyak __10 dari 13 kota__ yang dianalisa memiliki temperatur _feels like_ pada 2023 __lebih tinggi (sig)__ dibandingkan pada 2024.
+Sebanyak **10 dari 13 kota** yang dianalisa memiliki temperatur *feels like* pada 2023 **lebih tinggi (sig)** dibandingkan pada 2024.
 
 ::::: columns
 ::: {.column width="60%"}
-
 ```{r}
 library(parallel)
 library(kableExtra)
@@ -351,11 +322,9 @@ hasil |>
   kable("html") %>%
   kable_styling(font_size = 12)
 ```
-
 :::
 
 ::: {.column width="40%"}
-
 ```{r}
 #| fig-dpi: 500
 #| fig-width: 10
@@ -384,11 +353,7 @@ hasil |>
   scale_fill_manual(values = c("steelblue","darkgreen"))
 
 ```
-
 :::
-
-::::: 
-
+:::::
 
 # TERIMA KASIH
-
